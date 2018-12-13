@@ -7,6 +7,8 @@ Authors: David Mutchler, Vibha Alangar, Dave Fisher, Amanda Stouder,
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import math
+
+
 def main():
     """ Calls the   TEST   functions in this module. """
     run_test_init()
@@ -20,6 +22,7 @@ def main():
     run_test_get_distance_traveled()
     run_test_closer_to()
     run_test_halfway_to()
+
 
 ###############################################################################
 # IMPORTANT:
@@ -39,7 +42,7 @@ def main():
 #   Run the program and correct any syntax (notational) errors.
 # -----------------------------------------------------------------------------
 class Point(object):
-    def __init__(self , x, y):
+    def __init__(self, x, y):
         self.x = x
         self.y = y
         self.moves = 0
@@ -48,43 +51,54 @@ class Point(object):
         self.initial_x1 = self.x
         self.initial_y1 = self.y
         self.distance = 0
+
     def __repr__(self):
-        return 'Point({}, {})'.format(self.x , self.y)
+        return 'Point({}, {})'.format(self.x, self.y)
+
     def clone(self):
-        return Point(self.x , self.y)
-    def move_to(self , x , y):
+        return Point(self.x, self.y)
+
+    def move_to(self, x, y):
         self.x = x
         self.y = y
         self.moves = self.moves + 1
         self.distance = self.distance + math.sqrt((self.x - self.initial_x1) ** 2 + (self.y - self.initial_y1) ** 2)
         self.initial_x1 = self.x
         self.initial_y1 = self.y
-    def move_by(self, dx , dy):
+
+    def move_by(self, dx, dy):
         self.x = self.x + dx
         self.y = self.y + dy
         self.moves = self.moves + 1
         self.distance = self.distance + math.sqrt((self.x - self.initial_x1) ** 2 + (self.y - self.initial_y1) ** 2)
         self.initial_x1 = self.x
         self.initial_y1 = self.y
+
     def get_number_of_moves_made(self):
         return self.moves
-    def get_distance_from(self , point):
+
+    def get_distance_from(self, point):
         distance = math.sqrt((point.x - self.x) ** 2 + (point.y - self.y) ** 2)
         return distance
+
     def get_distance_from_start(self):
         return math.sqrt((self.x - self.initial_x) ** 2 + (self.y - self.initial_y) ** 2)
+
     def get_distance_traveled(self):
         return self.distance
-    def closer_to(self, point1 , point2):
+
+    def closer_to(self, point1, point2):
         distance1 = self.get_distance_from(point1)
         distance2 = self.get_distance_from(point2)
         if distance1 <= distance2:
             return point1
         else:
             return point2
-    def halfway_to(self , point):
-        halfway_point = Point(((point.x - self.x)/2 + self.x), ((point.y - self.y)/2 + self.y))
+
+    def halfway_to(self, point):
+        halfway_point = Point(((point.x - self.x) / 2 + self.x), ((point.y - self.y) / 2 + self.y))
         return halfway_point
+
 
 ###############################################################################
 # NOTE: For ALL of the methods that you implement, the method is allowed
@@ -188,6 +202,7 @@ def run_test_init():
     print('Expected for p2: 100 -40')
     print('Actual for p2:  ', p2.x, p2.y)
 
+
 def run_test_repr():
     """
     Tests the   __repr__   method of the Point class.
@@ -255,6 +270,8 @@ def run_test_repr():
     print('Actual for p1:  ', p1)
     print('Expected for p2: Point(100, -40)')
     print('Actual for p2:  ', p2)
+
+
 def run_test_clone():
     """
     Tests the   clone   method of the Point class.
@@ -351,6 +368,7 @@ def run_test_clone():
     print('Expected for p3: Point(777, 555)')
     print('Actual for p3:  ', p3)
 
+
 def run_test_move_to():
     """
     Tests the   move_to   method of the Point class.
@@ -444,6 +462,8 @@ def run_test_move_to():
     if check_has_no_return is not None:
         print('** FAILED: This method should NOT return an explicit')
         print('** value; in fact, it returned:', check_has_no_return)
+
+
 def run_test_move_by():
     """
     Tests the   move_by   method of the Point class.
@@ -538,6 +558,7 @@ def run_test_move_by():
     if check_has_no_return is not None:
         print('** FAILED: This method should NOT return an explicit')
         print('** value; in fact, it returned:', check_has_no_return)
+
 
 def run_test_get_number_of_moves_made():
     """
@@ -667,6 +688,7 @@ def run_test_get_number_of_moves_made():
     print('Expected for p2 moves made: 5')
     print('Actual for p2 moves made:  ', p2.get_number_of_moves_made())
 
+
 def run_test_get_distance_from():
     """
     Tests the   get_distance_from   method of the Point class.
@@ -770,6 +792,7 @@ def run_test_get_distance_from():
     print('Expected p2 to p4: 9.0')
     print('Actual   p2 to p4:', p2.get_distance_from(p4))
 
+
 def run_test_get_distance_from_start():
     """
     Tests the   get_distance_from_START   method of the Point class.
@@ -856,6 +879,7 @@ def run_test_get_distance_from_start():
     print('p2 from start to (1, 1), should be about 0.0')
     print('Actually is:', p2.get_distance_from_start())
 
+
 def run_test_get_distance_traveled():
     """
     Tests the   get_distance_traveled   method of the Point class.
@@ -936,6 +960,7 @@ def run_test_get_distance_traveled():
     print('Actual:', p3.get_distance_traveled())
     print('Expected p4 has now traveled 100.0')
     print('Actual:', p4.get_distance_traveled())
+
 
 def run_test_closer_to():
     """
@@ -1020,6 +1045,7 @@ def run_test_closer_to():
     print('Expected: False')
     print('Actual:  ', p1.closer_to(p4, p5) is p5)
 
+
 def run_test_halfway_to():
     """
     Tests the   halfway_to   method of the Point class.
@@ -1100,6 +1126,7 @@ def run_test_halfway_to():
     print()
     print('Should be: Point(-10.0, 20.0)')
     print('Actual is:', p3.halfway_to(p3))
+
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
